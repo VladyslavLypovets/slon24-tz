@@ -135,7 +135,7 @@
   const favoriteDateVisible = ref(false);
 
   const formattedValue = computed(() => 
-    `${formatter.format(value.value)}, ${new Intl.DateTimeFormat('uk-UA', {weekday: 'short'}).format(value.value).toUpperCase()}`
+    `${formatter.format(value.value).slice(0, -3)}, ${new Intl.DateTimeFormat('uk-UA', {weekday: 'short'}).format(value.value).toUpperCase()}`
   );
 
   const activeMonthName = computed(() => 
