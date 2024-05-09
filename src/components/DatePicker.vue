@@ -30,12 +30,14 @@
           </button>
         </div>
       </div>
+
       <div class="datepicker-controls">
         <v-btn variant="elevated" flat icon="$prev" @click="prevMonth"></v-btn>
         <v-btn variant="elevated" flat @click="datePickerComponentActive = 'month'">{{ activeMonthName }}</v-btn>
         <v-btn variant="elevated" flat @click="datePickerComponentActive = 'year'">{{ year }}</v-btn>
         <v-btn variant="elevated" flat icon="$next" @click="nextMonth"></v-btn>
       </div>
+
       <div class="v-picker__body">
         <v-locale-provider locale="ua">
           <v-date-picker-months
@@ -46,6 +48,7 @@
           >
           </v-date-picker-months>
         </v-locale-provider>
+
         <v-date-picker-years
           color="primary"
           v-show="datePickerComponentActive === 'year'"
@@ -74,6 +77,7 @@
           ></v-date-picker-month>
         </div>
       </div>
+
       <button class="datepicker-footer" @click="updateValue()">
         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g opacity="0.6">
@@ -117,14 +121,13 @@
   const props = defineProps({
     modelValue: {
       type: Date,
-      default: new Date()
-    }
+      default: new Date(),
+    },
   });
 
   const emit = defineEmits(['update:modelValue']);
+
   const value = ref(props.modelValue);
-
-
   const month = ref(value.value.getMonth());
   const year = ref(value.value.getFullYear());
   const datePickerVisible = ref(false);
@@ -137,7 +140,7 @@
 
   const activeMonthName = computed(() => 
     new Intl.DateTimeFormat('uk-UA', { month: 'long' }).format(new Date().setMonth(month.value))
-  )
+  );
 
   function updateValue() {
     emit('update:modelValue', value.value);
@@ -187,6 +190,7 @@
   .datepicker.v-theme--light *{
     --v-theme-primary: 101 156 192;
   }
+
   .datepicker {
     position: relative;
     width: 100%;
